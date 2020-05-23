@@ -1,0 +1,356 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font: 15px "Roboto";
+  background: #edeef0;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  background: #ffffff;
+}
+
+.col {
+  height: 80vh;
+}
+
+.chat {
+  margin-top: 5vh;
+}
+
+.friends {
+  width: 30%;
+  border-right: 2px solid #e3e4e8;
+}
+.friends__header {
+  margin: 0;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e3e4e8;
+}
+.friends__list {
+  list-style: none;
+}
+.friends__list li {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e3e4e8;
+}
+.friends__list li:hover {
+  background: #f5f7fa;
+  cursor: pointer;
+}
+.friends__list li.active {
+  background: #f5f7fa;
+}
+.friends__list li img {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 100px;
+  margin-right: 15px;
+}
+.friends__list .name {
+  font-size: 17px;
+  font-weight: bold;
+}
+.friends__list .text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8f8f90;
+  font-style: italic;
+  display: block;
+}
+
+.messages {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.messages__input {
+  background: #fafbfc;
+  border-top: 1px solid #e4e6e9;
+  position: relative;
+}
+.messages__input textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  height: auto;
+  min-height: 50px;
+  outline: none;
+  font-size: 17px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: block;
+}
+.messages__input svg {
+  width: 30px;
+  fill: #0477f8;
+}
+.messages__input .submit {
+  width: 60px;
+  height: 60px;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  border-left: 1px solid #e4e6e9;
+}
+.messages__bubbles {
+  height: 100%;
+  padding: 30px 45px;
+  overflow: scroll;
+  background: #f6f6f7;
+}
+.messages__group {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 15px;
+}
+.messages__group:last-child {
+  margin-bottom: 0;
+}
+.messages__group img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 100px;
+  margin-left: 30px;
+}
+.messages__group p {
+  max-width: 45%;
+  background: #0477f8;
+  color: #ffffff;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  position: relative;
+}
+.messages__group p:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-left: 15px solid #0477f8;
+  border-bottom: 10px solid transparent;
+  display: block;
+  top: 8px;
+  position: absolute;
+  right: -15px;
+}
+.messages__group-from {
+  flex-direction: row;
+}
+.messages__group-from img {
+  margin-left: 0;
+  margin-right: 30px;
+}
+.messages__group-from p {
+  background: #ffffff;
+  color: #000000;
+}
+.messages__group-from p:after {
+  border-top: 10px solid transparent;
+  border-right: 15px solid #ffffff;
+  border-bottom: 10px solid transparent;
+  border-left: none;
+  right: auto;
+  left: -15px;
+}
+
+.toggle {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+  margin: 0 15px;
+}
+.toggle:before {
+  content: "";
+  position: relative;
+  top: 3px;
+  left: 3px;
+  width: 34px;
+  height: 14px;
+  display: block;
+  background: #9A9999;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+.toggle span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(154, 153, 153, 0.5);
+  transition: all 0.2s ease;
+}
+.toggle span:before {
+  content: "";
+  position: absolute;
+  display: block;
+  margin: -18px;
+  width: 56px;
+  height: 56px;
+  background: rgba(4, 119, 248, 0.5);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 1;
+  pointer-events: none;
+}
+
+#cbx:checked + .toggle:before {
+  background: #0477f885;
+}
+#cbx:checked + .toggle span {
+  background: #0477f8;
+  transform: translateX(20px);
+  transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.15s ease;
+  box-shadow: 0 3px 8px rgba(4, 119, 248, 0.2);
+}
+#cbx:checked + .toggle span:before {
+  transform: scale(1);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.switcher {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+.switcher button {
+  font-size: 15px;
+  margin-left: 50px;
+  background: none;
+  border: none;
+  color: #0477f8;
+}
+.switcher-group {
+  display: flex;
+  align-items: center;
+}
+.switcher__name {
+  transition: 0.3s;
+}
+.switcher__name.changed {
+  font-weight: bold;
+}
+
+.form {
+  width: 30%;
+  background: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.form h1 {
+  text-align: center;
+  padding: 0 0 20px 0;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.form button {
+  border: 1px solid #e5e5e5;
+  font-size: 20px;
+  padding: 5px 20px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+.form button:hover {
+  background: #0477f8;
+  color: #ffffff;
+}
+.form__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.form__group-button {
+  flex-direction: row;
+  justify-content: center;
+}
+.form__group img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  object-position: 0 10%;
+}
+.form__group input {
+  height: 30px;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+.form__group input#file {
+  padding: 0;
+}
+.form__group label {
+  padding-bottom: 5px;
+}
+.form__group label[for=file] {
+  padding-bottom: 10px;
+}
+
+@media (max-width: 760px) {
+  .friends, .messages {
+    width: 100%;
+  }
+
+  .friends {
+    height: auto;
+  }
+
+  .messages {
+    height: 50vh;
+  }
+  .messages__input textarea {
+    font-size: 14px;
+  }
+  .messages__input .submit {
+    width: 54px;
+    height: 54px;
+  }
+  .messages__bubbles {
+    padding: 10px;
+  }
+  .messages__group p {
+    max-width: 75%;
+  }
+
+  .form {
+    width: 65%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
